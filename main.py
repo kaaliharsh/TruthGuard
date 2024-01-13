@@ -31,7 +31,7 @@ def stemming(content):
 
 #----------------------------Apply stemming function to content column-----------------------
 
-news_df['content'] = news_df['content'].apply(stemming)
+news_df['content'] = news_df['content'].apply(stemming)   
 
 #--------------------Vectorize data--------------------------------------
 
