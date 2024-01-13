@@ -1,3 +1,4 @@
+
 import streamlit as st
 import numpy as np
 import re
@@ -9,6 +10,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score  
 
+
 #-----------------------------Load data----------------------------------------
 
 news_df = pd.read_csv('train.csv')
@@ -16,6 +18,7 @@ news_df = news_df.fillna(' ')
 news_df['content'] = news_df['author'] + ' ' + news_df['title']
 X = news_df.drop('label', axis=1)
 y = news_df['label']
+
 
 #-------------------------Define stemming function------------------------------
 
@@ -29,9 +32,13 @@ def stemming(content):
     stemmed_content = ' '.join(stemmed_content)
     return stemmed_content
 
+
+
 #----------------------------Apply stemming function to content column-----------------------
 
-news_df['content'] = news_df['content'].apply(stemming)   
+news_df['content'] = news_df['content'].apply(stemming) 
+
+
 
 #--------------------Vectorize data--------------------------------------
 
@@ -41,15 +48,20 @@ vector = TfidfVectorizer()
 vector.fit(X)
 X = vector.transform(X)
 
+
+
 #----------------Split data into train and test sets-----------------------------
 
 X_train, X_test, Y_train, Y_test = train_test_split(X, y, test_size=0.2, stratify=y, random_state=2)
+
+
 
 
 #-------------------Fit logistic regression model---------------------------
 
 model = LogisticRegression()
 model.fit(X_train,Y_train)
+
 
 
 #------------------------------------------ website------------------------------------------------------------
@@ -62,7 +74,7 @@ def prediction(input_text):
     prediction = model.predict(input_data)
     return prediction[0]
 
-if input_text:  #check whether user input the data or not
+if input_text: #check whether user input the data or not
     pred = prediction(input_text)
     if pred == 1:
         st.write('The News is Fake')
