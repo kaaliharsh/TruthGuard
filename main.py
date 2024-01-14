@@ -80,4 +80,4 @@ if input_text: #check whether user input the data or not
     if pred == 1:
         st.write('The News is Fake')
     else:
-        st.write('The News Is Real')
+        st.write('The News Is Real') 
