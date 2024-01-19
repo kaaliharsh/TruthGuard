@@ -13,7 +13,7 @@ from sklearn.metrics import accuracy_score
  
 #-----------------------------Load data----------------------------------------
 
-news_df = pd.read_csv('train.csv')
+news_df = pd.read_csv('train.csv') 
 news_df = news_df.fillna(' ')
 news_df['content'] = news_df['author'] + ' ' + news_df['title']
 X = news_df.drop('label', axis=1)
