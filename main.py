@@ -41,7 +41,7 @@ news_df['content'] = news_df['content'].apply(stemming)
 
 
 #--------------------Vectorize data--------------------------------------
-
+ 
 X = news_df['content'].values
 y = news_df['label'].values
 vector = TfidfVectorizer()
